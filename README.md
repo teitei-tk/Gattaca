@@ -19,7 +19,7 @@ Gattaca is provide Request dispatcher Components
 
 require '/path/to/vendor/autoload.php';
 
-namespace YourApp:
+namespace YourApp;
 
 use Symfony\Component\Routing\Route;
 use Gattca\RequestDispatcher;
@@ -38,7 +38,7 @@ RequestDispatcher::new()->addRoute("index", new Route("/", [
 
 require '/path/to/vendor/autoload.php';
 
-namespace YourApp:
+namespace YourApp;
 
 use Symfony\Component\Routing\Route;
 use Gattca\RequestDispatcher;
@@ -63,7 +63,7 @@ RequestDispatcher::new()->addRoute("index", new Route("/", [
 
 require '/path/to/vendor/autoload.php';
 
-namespace YourApp:
+namespace YourApp;
 
 use Symfony\Component\Routing\Route;
 use Gattca\ApiRequestDispatcher;
