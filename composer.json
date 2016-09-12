@@ -1,0 +1,23 @@
+{
+  "name": "Gattaca",
+  "authors": [
+    {
+        "name": "teitei-tk",
+        "email": "teitei.tk@gmail.com"
+    }
+  ],
+  "require": {
+    "php": ">=7.0",
+    "symfony/http-foundation": "3.1.*",
+    "symfony/routing": "3.1.*"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "5.5.*"
+  },
+  "autoload": {
+    "psr-4": {
+      "Gattaca\\": "src/",
+      "Gattaca\\UnitTest\\": "tests/UniTest/"
+    }
+  }
+}
