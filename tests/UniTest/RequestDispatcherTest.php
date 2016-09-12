@@ -17,7 +17,7 @@ class RequestDispatcherTest extends TestCase
 
         /** @var Response $result */
         $result = RequestDispatcher::new($request)->addRoute("index", new Route("/", [
-            "handler"   =>  function() {
+            "handler"   =>  function(Request $request) {
                 return "HelloWorld!";
             }
         ]))->run(false);
@@ -29,7 +29,7 @@ class RequestDispatcherTest extends TestCase
     {
         $klass = new class implements ControllerInterface
         {
-            public function dispatchRequest()
+            public function dispatchRequest(Request $request)
             {
                 return "HelloWorld!";
             }

@@ -105,20 +105,21 @@ class RequestDispatcher implements RequestDispatcherInterface
 
         /** @var ControllerInterface $handler */
         $handler = null;
-        if (is_subclass_of($attr['handler'], self::CONTROLLER_INTERFACE_NAMESPACE_PATH)) {
+        $ControllerInterfacePath = self::CONTROLLER_INTERFACE_NAMESPACE_PATH;
+        if ($attr['handler'] instanceof $ControllerInterfacePath) {
             $handler = $attr['handler'];
 
-        } else if (is_subclass_of($attr['handler'], self::CONTROLLER_INTERFACE_NAMESPACE_PATH)) {
+        } else if (is_subclass_of($attr['handler'], $ControllerInterfacePath)) {
             $handler = new $attr['handler'];
 
         }
 
         $result = null;
         if (is_subclass_of($handler, self::CONTROLLER_INTERFACE_NAMESPACE_PATH)) {
-            $result = $handler->dispatchRequest();
+            $result = $handler->dispatchRequest($this->request);
 
         } else if (is_callable($attr['handler'])) {
-            $result = $attr['handler']();
+            $result = $attr['handler']($this->request);
         }
 
         if (empty($result)) {

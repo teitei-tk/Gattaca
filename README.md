@@ -23,10 +23,12 @@ require '/path/to/vendor/autoload.php';
 namespace YourApp;
 
 use Symfony\Component\Routing\Route;
+use Symfony\Component\HttpFoundation\Request;
+
 use Gattca\RequestDispatcher;
 
 RequestDispatcher::new()->addRoute("index", new Route("/", [
-    "handler" =>  function() {
+    "handler" =>  function(Request $request) {
         return "HelloWorld!";
     }
 ]))->run();
@@ -46,7 +48,7 @@ use Gattca\RequestDispatcher;
 
 $klass = new class implements ControllerInterface
 {
-    public function dispatchRequest()
+    public function dispatchRequest(Request $request)
     {
         return "HelloWorld!";
     }
@@ -70,7 +72,7 @@ use Symfony\Component\Routing\Route;
 use Gattca\ApiRequestDispatcher;
 
 ApiRequestDispatcher::new()->addRoute("index", new Route("/", [
-    "handler" =>  function() {
+    "handler" =>  function(Request $request) {
         return "HelloWorld!";
     }
 ]))->run();
@@ -79,7 +81,7 @@ ApiRequestDispatcher::new()->addRoute("index", new Route("/", [
 
 $klass = new class implements ControllerInterface
 {
-    public function dispatchRequest()
+    public function dispatchRequest(Request $request)
     {
         return "HelloWorld!";
     }

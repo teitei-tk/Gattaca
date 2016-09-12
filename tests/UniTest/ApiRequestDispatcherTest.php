@@ -18,7 +18,7 @@ class ApiRequestDispatcherTest extends TestCase
 
         /** @var JsonResponse $result */
         $result = ApiRequestDispatcher::new($request)->addRoute("index", new Route("/", [
-            "handler"   =>  function() {
+            "handler"   =>  function(Request $request) {
                 return "HelloWorld!";
             }
         ]))->run(false);
@@ -31,7 +31,7 @@ class ApiRequestDispatcherTest extends TestCase
     {
         $klass = new class implements ControllerInterface
         {
-            public function dispatchRequest()
+            public function dispatchRequest(Request $request)
             {
                 return "HelloWorld!";
             }
