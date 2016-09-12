@@ -3,6 +3,8 @@ Gattaca is provide Request dispatcher Components
 
 ---
 
+[![Build Status](https://travis-ci.org/teitei-tk/Gattaca.svg?branch=master)](https://travis-ci.org/teitei-tk/Gattaca)
+
 ## Dependency
 * PHP7 (not 5.\*)
 * Symfony\Routing
