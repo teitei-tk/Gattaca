@@ -1,5 +1,9 @@
 {
-  "name": "Gattaca",
+  "name": "teitei-tk/gattaca",
+  "type": "library",
+  "description": "Provide Simple Request dispatcher Components",
+  "license": "MIT",
+  "homepage": "http://github.com/teitei-tk/gattaca",
   "authors": [
     {
         "name": "teitei-tk",
