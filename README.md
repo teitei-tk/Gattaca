@@ -4,6 +4,7 @@ gattaca is provide Request dispatcher Components
 ---
 
 [![Build Status](https://travis-ci.org/teitei-tk/Gattaca.svg?branch=master)](https://travis-ci.org/teitei-tk/Gattaca)
+[![Latest Stable Version](https://poser.pugx.org/teitei-tk/gattaca/v/stable)](https://packagist.org/packages/teitei-tk/gattaca)
 
 ## Dependency
 * PHP7 (not 5.\*)
