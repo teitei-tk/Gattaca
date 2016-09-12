@@ -44,4 +44,32 @@ class RequestDispatcherTest extends TestCase
 
         $this->assertSame($result->getContent(), "HelloWorld!");
     }
+
+    public function testDispatcherHandlerNotImplemented()
+    {
+        $request = Request::create("/");
+
+        try {
+            RequestDispatcher::new($request)->addRoute("index", new Route("/"))->run(false);
+
+            $this->fail();
+        } catch (\RuntimeException $e) {
+            $this->assertSame($e->getCode(), RequestDispatcher::HANDLER_NOT_IMPLEMENTED_ERROR_CODE);
+        }
+    }
+
+    public function testDispatcherHandlerInvalided()
+    {
+         $request = Request::create("/");
+
+        try {
+            RequestDispatcher::new($request)->addRoute("index", new Route("/", [
+                "handler"   =>  0,
+            ]))->run(false);
+
+            $this->fail();
+        } catch (\RuntimeException $e) {
+            $this->assertSame($e->getCode(), RequestDispatcher::HANDLER_INVALID_ERROR_CODE);
+        }
+    }
 }

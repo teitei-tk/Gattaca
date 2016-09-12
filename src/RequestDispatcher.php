@@ -12,7 +12,20 @@ use Symfony\Component\Routing\RouteCollection;
 
 class RequestDispatcher implements RequestDispatcherInterface
 {
+    /**
+     * @var string ControllerInterface Path
+     */
     const CONTROLLER_INTERFACE_NAMESPACE_PATH = "Gattaca\\ControllerInterface";
+
+    /**
+     * @var int
+     */
+    const HANDLER_NOT_IMPLEMENTED_ERROR_CODE = 1001;
+
+    /**
+     * @var int
+     */
+    const HANDLER_INVALID_ERROR_CODE = 1002;
 
     /**
      * @var Request
@@ -59,7 +72,7 @@ class RequestDispatcher implements RequestDispatcherInterface
             $routeCollection = new RouteCollection();
         }
 
-        return new self($request, $routeCollection);
+        return new static($request, $routeCollection);
     }
 
     /**
@@ -87,7 +100,7 @@ class RequestDispatcher implements RequestDispatcherInterface
 
         $attr = $matcher->match($this->request->getPathInfo());
         if (! isset($attr['handler'])) {
-            throw new \RuntimeException("handler is not implemented.");
+            throw new \RuntimeException("handler is not implemented.", self::HANDLER_NOT_IMPLEMENTED_ERROR_CODE);
         }
 
         /** @var ControllerInterface $handler */
@@ -109,14 +122,15 @@ class RequestDispatcher implements RequestDispatcherInterface
         }
 
         if (empty($result)) {
-            throw new \RuntimeException("handler is not implemented. requirements func or interface implemented class");
+            throw new \RuntimeException("handler is invalid. requirements func or interface implemented class", self::HANDLER_INVALID_ERROR_CODE);
         }
 
-        if (! $result instanceof Response) {
+        if (! $result instanceof Response && (method_exists($result, "__toString") || is_string($result))) {
             $result = new Response($result, 200);
         }
 
-        if ($isSendResponse === false) {
+
+        if ($isSendResponse === false || ! $result instanceof Response) {
             return $result;
         }
 
